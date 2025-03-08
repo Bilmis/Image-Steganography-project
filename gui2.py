@@ -9,7 +9,7 @@ import re
 
 
 window = tk.Tk()
-window.title("StegaX")
+window.title("StegaCrypt")
 window.geometry("862x519")
 window.configure(bg = "#093545")
 
@@ -24,8 +24,10 @@ canvas = Canvas(
     relief = "ridge"
 )
 
+#OUTPUT_PATH = Path(_file_).parent
+#ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\USER\PycharmProjects\StegaX\ImageSteganographySystem\assets\frame2")
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\USER\PycharmProjects\StegaX\ImageSteganographySystem\assets\frame2")
+ASSETS_PATH = OUTPUT_PATH / Path("assets/frame2")
 #database creation
 # Connect to the database
 connection = sqlite3.connect('database.db')
@@ -196,7 +198,7 @@ canvas.create_text(
     272.0,
     136.0,
     anchor="nw",
-    text="Welcome to StegaX, Register now and start your trial!",
+    text="Welcome to StegaCrypt, Register now and start your trial!",
     fill="#FFFFFF",
     font=("Poppins Regular", 12 * -1)
 )

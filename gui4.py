@@ -4,7 +4,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, filedialog
 import subprocess
 
 window = tk.Tk()
-window.title("StegaX")
+window.title("StegaCrypt")
 window.geometry("862x519")
 window.configure(bg = "#093545")
 
@@ -21,7 +21,7 @@ canvas = Canvas(
 
 global selected_image
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\USER\PycharmProjects\StegaX\ImageSteganographySystem\assets\frame4")
+ASSETS_PATH = OUTPUT_PATH / Path("assets/frame4")
 
 def open_login_interface():
     window.withdraw()  # Hide the current interface
@@ -98,7 +98,7 @@ canvas.create_text(
     298.0,
     28.0,
     anchor="nw",
-    text="Encoding with StegaX!",
+    text="Encoding with StegaCrypt!",
     fill="#FFFFFF",
     font=("LexendDeca Regular", 24 * -1)
 )

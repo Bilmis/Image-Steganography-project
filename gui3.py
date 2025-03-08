@@ -8,7 +8,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import subprocess
 
 window = Tk()
-window.title("StegaX")
+window.title("StegaCrypt")
 window.geometry("862x519")
 window.configure(bg = "#093545")
 
@@ -24,7 +24,7 @@ canvas = Canvas(
 )
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\USER\PycharmProjects\StegaX\ImageSteganographySystem\assets\frame3")
+ASSETS_PATH = OUTPUT_PATH / Path("assets/frame3")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -120,7 +120,7 @@ canvas.create_text(
     256.0,
     64.0,
     anchor="nw",
-    text="StegaX is An Image Steganography System that enables you",
+    text="StegaCrypt is An Image Steganography System that enables you",
     fill="#FFFFFF",
     font=("Poppins Regular", 12 * -1)
 )

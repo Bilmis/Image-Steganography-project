@@ -5,7 +5,7 @@ import subprocess
 from global_variables import selected_image
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\USER\PycharmProjects\StegaX\ImageSteganographySystem\assets\frame6")
+ASSETS_PATH = OUTPUT_PATH / Path("assets/frame6")
 
 
 def open_login_interface():
@@ -65,7 +65,7 @@ canvas.create_text(
     298.0,
     28.0,
     anchor="nw",
-    text="Encoding with StegaX!",
+    text="Encoding with StegaCrypt!",
     fill="#FFFFFF",
     font=("LexendDeca Regular", 24 * -1)
 )

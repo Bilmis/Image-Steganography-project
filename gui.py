@@ -9,7 +9,7 @@ import sqlite3
 import bcrypt
 
 window = tk.Tk()
-window.title("StegaX")
+window.title("StegaCrypt")
 window.geometry("862x519")
 window.configure(bg = "#093545")
 
@@ -25,7 +25,7 @@ canvas = Canvas(
 )
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\USER\PycharmProjects\StegaX\ImageSteganographySystem\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path("assets/frame0")
 # Connect to the database
 connection = sqlite3.connect('database.db')
 cursor = connection.cursor()
@@ -201,7 +201,7 @@ canvas.create_text(
     250.0000000000001,
     164.0,
     anchor="nw",
-    text="Welcome to StegaX, login to your account in order to access",
+    text="Welcome to StegaCrypt, login to your account in order to access",
     fill="#FFFFFF",
     font=("Poppins Regular", 12 * -1)
 )
@@ -216,3 +216,4 @@ canvas.create_text(
 )
 window.resizable(False, False)
 window.mainloop()
+ 
