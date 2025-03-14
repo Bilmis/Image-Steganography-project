@@ -1,3 +1,51 @@
+from Crypto.Cipher import DES3
+from Crypto.Random import get_random_bytes
+import base64
+
+# Function to adjust key length to 24 bytes
+def adjust_key(key):
+    key = key.encode('utf-8')
+    while len(key) < 24:
+        key += b" "  # Padding if key is too short
+    return key[:24]  # Truncate if too long
+
+# PKCS5 Padding
+def pad(text):
+    pad_len = 8 - (len(text) % 8)
+    return text + chr(pad_len) * pad_len
+
+def unpad(text):
+    return text[:-ord(text[-1])]
+
+# Encryption function using Triple DES
+def encrypt(message, key):
+    key = adjust_key(key)  # Ensure key is 24 bytes
+    cipher = DES3.new(key, DES3.MODE_CBC, get_random_bytes(8))  # Generate IV
+    padded_message = pad(message)
+    encrypted_message = cipher.iv + cipher.encrypt(padded_message.encode('utf-8'))
+    return base64.b64encode(encrypted_message).decode('utf-8')
+
+# Decryption function using Triple DES
+def decrypt(encrypted_message, key):
+    key = adjust_key(key)  # Ensure key is 24 bytes
+    encrypted_message = base64.b64decode(encrypted_message)
+    iv = encrypted_message[:8]  # Extract IV
+    cipher = DES3.new(key, DES3.MODE_CBC, iv)
+    decrypted_message = cipher.decrypt(encrypted_message[8:]).decode('utf-8')
+    return unpad(decrypted_message)
+
+# Example usage
+message = "Hello, world!"
+key = "mysecretkey123456"
+
+# Encryption
+encrypted_message = encrypt(message, key)
+print("Encrypted message:", encrypted_message)
+
+# Decryption
+decrypted_message = decrypt(encrypted_message, key)
+print("Decrypted message:", decrypted_message)
+"""
 # Encryption function
 def encrypt(message, key):
     encrypted_message = ""
@@ -37,3 +85,4 @@ print("Encrypted message:", encrypted_message)
 # Decryption
 decrypted_message = decrypt(encrypted_message, key)
 print("Decrypted message:", decrypted_message)
+"""

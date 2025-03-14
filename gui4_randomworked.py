@@ -317,19 +317,7 @@ def open_file_dialog():
 # Generate and save the encryption key
 import os
 import random
-def generate_and_save_key():
-    key = str(random.randint(100000, 999999))  # Generate a 6-digit random key
-    
-    # Save the key to a text file on the Desktop
-    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
-    key_file_path = os.path.join(desktop_path, "encryption_key.txt")
 
-    with open(key_file_path, 'w') as key_file:
-        key_file.write(key)  # Save the key in a text file
-    
-    return key  # Return the generated key
-
-"""
 def generate_and_save_key():
     key = str(random.randint(100000, 999999))  # Generate a 6-digit random key
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
@@ -339,7 +327,7 @@ def generate_and_save_key():
         key_file.write(key)  # Save the key in a text file
 
     return key
-"""
+
 # Generate the random key when the program starts
 generated_key = generate_and_save_key()
 

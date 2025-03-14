@@ -67,17 +67,11 @@ def open_key_file_dialog():
     if key_file_path:
         try:
             with open(key_file_path, 'r') as key_file:
-                key = key_file.read().strip()  # Read and clean the key
-                if not key.isdigit():  # Ensure the key is valid
-                    tk.messagebox.showerror("Error", "Invalid key file. Please select a valid encryption key.")
-                    return
-                
-                entry_2.delete(0, tk.END)  # Clear the entry field
-                entry_2.insert(0, "*****")  # Mask the key for privacy
-                entry_2.actual_key = key  # Store the real key in a hidden attribute
+                key = key_file.read().strip()  # Read and remove any extra spaces/newlines
+                entry_2.delete(0, tk.END)  # Clear the current text in the Entry widget
+                entry_2.insert(0, key)  # Insert the extracted key
         except Exception as e:
             tk.messagebox.showerror("Error", f"Failed to load the key: {str(e)}")
-
 ####################################
 
 #decryption
@@ -177,10 +171,7 @@ decoded_message=''
 def decode_photo():
     if selected is not None:
         image_path = entry_1.get()
-        key = getattr(entry_2, "actual_key", "").strip()
-        if not key:  # If the key is still empty, show an error and return
-            tk.messagebox.showerror("Error", "Please select an encryption key file before decoding.")
-            return
+        key = entry_2.get().strip()
         # Perform encoding using the selected photo
         decoded_message = decode_lsb(selected)
         final = decrypt(decoded_message, key)

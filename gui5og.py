@@ -61,25 +61,6 @@ def open_file_dialog():
         entry_1.delete(0, tk.END)  # Clear the current text in the Entry widget
         entry_1.insert(0, file_path)  # Insert the selected file path into the Entry widget
 
-######################################
-def open_key_file_dialog():
-    key_file_path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
-    if key_file_path:
-        try:
-            with open(key_file_path, 'r') as key_file:
-                key = key_file.read().strip()  # Read and clean the key
-                if not key.isdigit():  # Ensure the key is valid
-                    tk.messagebox.showerror("Error", "Invalid key file. Please select a valid encryption key.")
-                    return
-                
-                entry_2.delete(0, tk.END)  # Clear the entry field
-                entry_2.insert(0, "*****")  # Mask the key for privacy
-                entry_2.actual_key = key  # Store the real key in a hidden attribute
-        except Exception as e:
-            tk.messagebox.showerror("Error", f"Failed to load the key: {str(e)}")
-
-####################################
-
 #decryption
 def decrypt(encrypted_message, key):
     decrypted_message = ""
@@ -177,10 +158,7 @@ decoded_message=''
 def decode_photo():
     if selected is not None:
         image_path = entry_1.get()
-        key = getattr(entry_2, "actual_key", "").strip()
-        if not key:  # If the key is still empty, show an error and return
-            tk.messagebox.showerror("Error", "Please select an encryption key file before decoding.")
-            return
+        key = entry_2.get()
         # Perform encoding using the selected photo
         decoded_message = decode_lsb(selected)
         final = decrypt(decoded_message, key)
@@ -249,7 +227,7 @@ canvas.create_text(
     fill="#FFFFFF",
     font=("Poppins Regular", 12 * -1)
 )
-####################################3##########################################
+
 canvas.create_text(
     355.0,
     188.0,
@@ -258,16 +236,6 @@ canvas.create_text(
     fill="#FFFFFF",
     font=("Poppins Regular", 12 * -1)
 )
-# Button to locate and load the encryption key file
-button_image_key = PhotoImage(file=relative_to_assets("image_2.png"))
-button_key = Button(
-    image=button_image_key,
-    borderwidth=0,
-    highlightthickness=0,
-    command=open_key_file_dialog
-)
-button_key.place(x=541.0, y=210.0)  # Adjust placement as needed
-#########################################################################
 
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
